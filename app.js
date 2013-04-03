@@ -22,16 +22,20 @@ Ext.Loader.setPath({
 
 Ext.application({
     name: 'PinYin',
-	controllers: ['Flash'],
     requires: [
         'Ext.MessageBox'
     ],
-
+	models: ['Card'],
+	stores: ['Cards'],
+	controllers: ['Flash'],
     views: [
         'Main',
 		'FlashListContainer',
 		'TutorialContainer',
-		'SettingsContainer'
+		'SettingsContainer',
+		'CardEditor',
+		'CardsList',
+		'FlashMe'
     ],
 
     icon: {
@@ -57,12 +61,20 @@ Ext.application({
         Ext.fly('appLoadingIndicator').destroy();
 		
 		//create FlashListContainer instance using the Class’s alias
+        var Main = {
+            xtype: "main"
+        };
+
         var FlashListContainer = {
             xtype: "flashlistcontainer"
         };
+		
+		var CardEditor = {
+			xtype: "cardeditor"
+		};
 
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('PinYin.view.Main'));		
+        Ext.Viewport.add([Main,FlashListContainer,CardEditor]);		
     },
 
     onUpdated: function() {

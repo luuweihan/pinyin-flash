@@ -7,12 +7,13 @@ Ext.define("PinYin.view.Main", {
         'Ext.tab.Panel',
 		'Ext.Anim'
     ],
-	
+				
+		//Main Variables to build the view
 	    initialize: function () {
 
         this.callParent(arguments);
-			
-        var topTitlebar = {
+        
+		var topTitlebar = {
             xtype: "toolbar",
             title: 'Pinyin FlashCards',
             docked: "top"
@@ -23,7 +24,7 @@ Ext.define("PinYin.view.Main", {
 			xtype: 'panel',
 			html: '<br>'
 		};
-		
+		//Welcom text and use instructions
 		var InfoPanel = {
 			xtype: 'panel',
 				items: {							
@@ -41,7 +42,7 @@ Ext.define("PinYin.view.Main", {
 			listeners: {
 				tap: {
 					fn: function() {
-						Ext.Viewport.animateActiveItem(Ext.create('PinYin.view.FlashListContainer'), {type: 'flip'});
+						Ext.Viewport.animateActiveItem(Ext.create('PinYin.view.FlashMe'), {type: 'flip'});
 					},
 					element: 'element'
 				}
@@ -52,6 +53,7 @@ Ext.define("PinYin.view.Main", {
 			title: 'Get Started',
 			iconCls: 'action',
 			listeners: {
+				//the 'painted' listeners was needed because for some reason it wasn't possible to hook into the tab Panel buttons that are generated.
 				painted: {
 					fn: function() {
 						Ext.Viewport.animateActiveItem(Ext.create('PinYin.view.TutorialContainer'), {type: 'slide', direction: 'left'});
@@ -60,11 +62,26 @@ Ext.define("PinYin.view.Main", {
 				}
 			}
         };
+
+		var CardListPanelBtn = {
+			title: 'Card List',
+			iconCls: 'compose',
+			listeners: {
+				//the 'painted' listeners was needed because for some reason it wasn't possible to hook into the tab Panel buttons that are generated.
+				painted: {
+					fn: function() {
+						Ext.Viewport.animateActiveItem(Ext.create('PinYin.view.FlashListContainer'), {type: 'slide', direction: 'left'});
+					},
+					element: 'element'
+				}
+			}
+		};		
 		
 		var SettingsPanelBtn = {
 			title: 'Settings',
 			iconCls: 'settings',
 			listeners: {
+				//the 'painted' listeners was needed because for some reason it wasn't possible to hook into the tab Panel buttons that are generated.
 				painted: {
 					fn: function() {
 						Ext.Viewport.animateActiveItem(Ext.create('PinYin.view.SettingsContainer'), {type: 'slide', direction: 'left'});
@@ -73,7 +90,7 @@ Ext.define("PinYin.view.Main", {
 				}
 			}
 		};
-		
+		//This is the actual main view, where the user clicks on the begin button to open the flash cards
 		var WelcomePanel = {
 			title: 'Welcome',
 			iconCls: 'home',
@@ -88,21 +105,22 @@ Ext.define("PinYin.view.Main", {
 					BeginButton
 				]
 		};
-		
+		//This is the navigation bar, which switches between the various views.
 		var TabPanel = {
 			xtype: "tabpanel",
 			tabBarPosition: 'bottom',
 				items: [
 					WelcomePanel,
 					GettingStartedPanelBtn,
+					CardListPanelBtn,
 					SettingsPanelBtn
 				]
 		};
-
+		//Actual building of view by combining variables
         this.add([TabPanel]);
 		
     },
-
+	//Config options
     config: {
 		layout: {
             type: 'fit'
