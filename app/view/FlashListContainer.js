@@ -1,6 +1,9 @@
 Ext.define("PinYin.view.FlashListContainer", {
     extend: "Ext.Container",
     alias: "widget.flashlistcontainer",
+    requires: [
+        'Ext.Carousel'
+    ],	
 
     initialize: function () {
 
@@ -32,8 +35,53 @@ Ext.define("PinYin.view.FlashListContainer", {
                 newButton
             ]
         };
+		
+		var AnsPanel = Ext.create('Ext.Container', {
+			layout: {
+				type: 'hbox',
+				align: 'middle'
+			},
+			items: [
+				{
+					xtype: 'panel',
+					flex: 1,
+					style: 'background-color: red;'
+				},
+				{
+					xtype: 'panel',
+					flex: 2,
+					style: 'background-color: green'
+				}
+			]
+		});
+		
+		var MainPanel = Ext.create('Ext.Carousel', {
+            indicator : false,
+			styleHtmlContent: true,
+			
+			items: [
+				{
+					html : 'Item 1',
+					listeners: {
+						tap: {
+							fn: function() {
+								Ext.Viewport.animateActiveItem('AnsPanel'), {type: 'flip'};
+							},
+							element: 'element'
+						}
+					}
+					
+				},
+				{
+					html : 'Item 2'
+				},
+				{
+					html : 'Item 3'
+				}
+			]
+		});
 
-        this.add([topToolbar]);
+        this.add([topToolbar,MainPanel]);
     },
 	onHomeButtonTap: function () {
         Ext.Viewport.setActiveItem(Ext.create('PinYin.view.Main'));

@@ -1,6 +1,5 @@
 Ext.define("PinYin.view.Main", {
 	extend: "Ext.Container",
-    //extend: 'Ext.tab.Panel',
 	alias: "widget.main",
     requires: [
         'Ext.TitleBar',
