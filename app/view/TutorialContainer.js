@@ -30,7 +30,7 @@ Ext.define("PinYin.view.TutorialContainer", {
 		var VideoPanel = {
 			xtype: 'video',
 			url: 'http://av.vimeo.com/64284/137/87347327.mp4?token=1330978144_f9b698fea38cd408d52a2393240c896c',
-			posterUrl: '/pinyin/resources/images/demo.png'
+			posterUrl: 'resources/images/demo.png'
 		};
 
         this.add([topToolbar,VideoPanel]);
