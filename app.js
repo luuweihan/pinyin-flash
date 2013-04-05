@@ -15,13 +15,14 @@
 
 //<debug>
 Ext.Loader.setPath({
-    'Ext': '../touch/src',
+    'Ext': 'touch/src',
     'PinYin': 'app'
 });
 //</debug>
 
 Ext.application({
     name: 'PinYin',
+
     requires: [
         'Ext.MessageBox'
     ],
@@ -59,8 +60,8 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-		
-		//create FlashListContainer instance using the Class’s alias
+
+        //create FlashListContainer instance using the Class’s alias
         var Main = {
             xtype: "main"
         };

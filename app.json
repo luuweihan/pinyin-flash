@@ -40,7 +40,7 @@
      */
     "js": [
         {
-            "path": "../touch/sencha-touch.js",
+            "path": "touch/sencha-touch.js",
             "x-bootstrap": true
         },
         {
@@ -67,10 +67,6 @@
      *      }
      */
     "css": [
-        {
-            "path": "../touch/resources/css/base.css",
-            "update": "delta"
-        },
         {
             "path": "resources/css/app.css",
             "update": "delta"
@@ -125,5 +121,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "87e7e5e6-9be2-4e41-8722-94130ff1d6f3"
+    "id": "4915babb-9ff9-4a66-8b9f-b72c8bdf7549"
 }
